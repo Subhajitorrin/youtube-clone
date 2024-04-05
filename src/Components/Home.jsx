@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
 import Card from "./Card";
@@ -32,7 +32,7 @@ import setting from "../assets/setting.svg"
 import report from "../assets/report.svg"
 import help from "../assets/help.svg"
 import send from "../assets/send.svg"
-
+import { APIDATA } from "../APIDATA";
 
 const set5=[
   { icon: setting, text: "Setting" },
@@ -96,6 +96,16 @@ function Home({ toggleMenu, setToggleMenu }) {
     homeleft();
   }, [toggleMenu]);
 
+const [videoData,setVideoData]=useState([]);
+const [searchQuery,setSearchQuery]=useState("");
+  useEffect(() => {
+    // APIDATA(`search?part=snippet&q=${selectedCategory}`)
+    APIDATA(`search?part=snippet&q=payal%20gaming`).then((data)=>{
+      setVideoData(data.items)
+      console.log(data.items[0])
+    })
+  }, [])
+  
   return (
     <div className="homeContainer">
       <div className="hiddenleft active" ref={hiddensidebar}>
@@ -153,7 +163,15 @@ function Home({ toggleMenu, setToggleMenu }) {
           })
         }
       </div>
-      <div className="homeright">{cards}</div>
+      <div className="homeright">
+        {
+          videoData.map((item,index)=>{
+            const thumbnail = item.snippet.thumbnails.high.url;
+            const title = item.snippet.title
+            return <Card image={thumbnail} title = {title}/>
+          })
+        }
+      </div>
     </div>
   );
 }

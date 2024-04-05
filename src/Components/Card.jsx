@@ -1,11 +1,15 @@
 import React from 'react'
 import './Card.css'
 
-function Card() {
+function Card({image,title}) {
   return (
     <div className="cardContainer">
-        <div className="cardtop"></div>
-        <div className="cardbottom"></div>
+        <div className="cardtop">
+          <img src={image} alt="" />
+        </div>
+        <div className="cardbottom">
+          <h4>{title}</h4>
+        </div>
     </div>
   )
 }
