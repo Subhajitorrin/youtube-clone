@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Heading.css";
 import { RiMenuLine } from "react-icons/ri";
 import youtubelogo from "../assets/youtube.svg";
@@ -8,9 +8,13 @@ import { MdVideoCall } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link } from 'react-router-dom';
 
-function Heading({toggleMenu,setToggleMenu}) {
+function Heading({toggleMenu,setToggleMenu,setsearchData}) {
+  const [input,setInput]=useState("");
   function handelMenuClick(){
     setToggleMenu(!toggleMenu);
+  }
+  function handelSearch(){
+    setsearchData(input);
   }
   return (
     <div className="headingContainer">
@@ -26,8 +30,8 @@ function Heading({toggleMenu,setToggleMenu}) {
       </div>
       <div className="middle">
         <div className="search">
-          <input type="search" className="searchInput" placeholder="Search" />
-          <IoIosSearch className="searchIcon" />
+          <input type="search" className="searchInput" placeholder="Search" onChange={(e) => setInput(e.target.value)}/>
+          <IoIosSearch className="searchIcon" onClick={handelSearch}/>
         </div>
         <div className="micContainer">
           <FaMicrophone className="mic" />

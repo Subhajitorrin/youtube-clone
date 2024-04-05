@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import "./Home.css";
 import Card from "./Card";
 import homeicon from "../assets/home.svg";
@@ -28,23 +27,23 @@ import ytpremium from "../assets/ytpremium.svg";
 import ytstudio from "../assets/ytstudio.svg";
 import ytmusic from "../assets/ytmusic.svg";
 import ytkids from "../assets/ytkids.svg";
-import setting from "../assets/setting.svg"
-import report from "../assets/report.svg"
-import help from "../assets/help.svg"
-import send from "../assets/send.svg"
-import { APIDATA } from "../APIDATA";
+import setting from "../assets/setting.svg";
+import report from "../assets/report.svg";
+import help from "../assets/help.svg";
+import send from "../assets/send.svg";
+import {GetVideosBySearch} from "../API/GetVideosBySearch"
 
-const set5=[
+const set5 = [
   { icon: setting, text: "Setting" },
   { icon: report, text: "Report History" },
   { icon: help, text: "Help" },
   { icon: send, text: "Send feedback" },
-]
+];
 const set4 = [
   { icon: ytpremium, text: "YouTube Premium" },
   { icon: ytstudio, text: "YouTube Studio" },
   { icon: ytmusic, text: "YouTube Music" },
-  { icon: ytkids, text: "YouTube Kids" }
+  { icon: ytkids, text: "YouTube Kids" },
 ];
 const set3 = [
   { icon: trending, text: "Trending" },
@@ -57,7 +56,7 @@ const set3 = [
   { icon: sports, text: "Sports" },
   { icon: courses, text: "Courses" },
   { icon: fashion, text: "Fashion" },
-  { icon: podcasts, text: "Podcasts" }
+  { icon: podcasts, text: "Podcasts" },
 ];
 const set1 = [
   { icon: homeicon, text: "Home" },
@@ -73,13 +72,13 @@ const set2 = [
   { icon: likedvideos, text: "Liked videos" },
 ];
 
-function Home({ toggleMenu, setToggleMenu }) {
+function Home({ toggleMenu,searchData }) {
   const sidebar = useRef(null);
   const hiddensidebar = useRef(null);
 
   const cards = [];
   for (let i = 0; i < 100; i++) {
-    cards.push(<Card />);
+    cards.push(i);
   }
 
   function homeleft() {
@@ -96,16 +95,17 @@ function Home({ toggleMenu, setToggleMenu }) {
     homeleft();
   }, [toggleMenu]);
 
-const [videoData,setVideoData]=useState([]);
-const [searchQuery,setSearchQuery]=useState("");
+  // -------------------------------------API WORKINGS------------------------------------- //
+const [videoList,setvideoList]=useState([]);
+
   useEffect(() => {
-    // APIDATA(`search?part=snippet&q=${selectedCategory}`)
-    APIDATA(`search?part=snippet&q=payal%20gaming`).then((data)=>{
-      setVideoData(data.items)
-      console.log(data.items[0])
+    GetVideosBySearch(searchData).then((res)=>{
+      setvideoList(res.items)
     })
-  }, [])
+  }, [searchData])
   
+  
+  // -------------------------------------API WORKINGS------------------------------------- //
   return (
     <div className="homeContainer">
       <div className="hiddenleft active" ref={hiddensidebar}>
@@ -142,33 +142,29 @@ const [searchQuery,setSearchQuery]=useState("");
         <Line />
         {/* set3 */}
         <h4 style={{ marginLeft: "22px", marginBottom: "10px" }}>Explore</h4>
-        {
-          set3.map((item,index)=>{
-            return <LineCard key={index} icon={item.icon} text={item.text} />;
-          })
-        }
+        {set3.map((item, index) => {
+          return <LineCard key={index} icon={item.icon} text={item.text} />;
+        })}
         <Line />
         {/* set4 */}
-        <h4 style={{ marginLeft: "22px", marginBottom: "10px" }}>More from YouTube</h4>
-        {
-          set4.map((item,index)=>{
-            return <LineCard key={index} icon={item.icon} text={item.text} />;
-          })
-        }
+        <h4 style={{ marginLeft: "22px", marginBottom: "10px" }}>
+          More from YouTube
+        </h4>
+        {set4.map((item, index) => {
+          return <LineCard key={index} icon={item.icon} text={item.text} />;
+        })}
         <Line />
         {/* set5 */}
-        {
-          set5.map((item,index)=>{
-            return <LineCard key={index} icon={item.icon} text={item.text} />;
-          })
-        }
+        {set5.map((item, index) => {
+          return <LineCard key={index} icon={item.icon} text={item.text} />;
+        })}
       </div>
       <div className="homeright">
         {
-          videoData.map((item,index)=>{
-            const thumbnail = item.snippet.thumbnails.high.url;
-            const title = item.snippet.title
-            return <Card image={thumbnail} title = {title}/>
+          videoList.map((item,index)=>{
+            const image = item.snippet.thumbnails.high.url;
+            const title = item.snippet.title;
+            return <Card image={image} title={title}/>
           })
         }
       </div>
