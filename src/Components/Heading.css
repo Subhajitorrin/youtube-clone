@@ -1,0 +1,183 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+/* Global styles */
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Heading container */
+.headingContainer {
+  background-color: #0f0f0f;
+  height: 56px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.4rem;
+  user-select: none;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+.logo img {
+  height: 35px;
+}
+
+.logo h3 {
+  letter-spacing: -2px;
+  font-family: "Roboto";
+}
+
+/* Left section */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.menu {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.left p {
+  position: absolute;
+  right: -10px;
+  top: 2px;
+  font-size: 0.6rem;
+  color: rgb(161, 161, 161);
+}
+
+/* Middle section */
+.middle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.search {
+  width: 567px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  overflow: hidden;
+  background-color: #222222;
+  border: 1px solid #303030;
+}
+
+.searchInput {
+  width: 90%;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 5px;
+  font-size: 0.9rem;
+  background-color: #0a0a0a;
+  border: none;
+  outline: none;
+  color: white;
+}
+
+.searchIcon {
+  width: 10%;
+  font-size: 1.5rem;
+}
+
+.micContainer {
+  height: 40px;
+  width: 40px;
+  background-color: #303030;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.1s all ease-in-out;
+}
+
+.micContainer:hover {
+  background-color: #464646;
+}
+
+.mic {
+  font-size: 1.3rem;
+}
+
+/* Right section */
+.right {
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.iconContainer {
+  background-color: transparent;
+  padding: 8px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.1s all ease-in-out;
+}
+
+.iconContainer:hover {
+  background-color: #464646;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.user {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.user img {
+  height: 40px;
+  object-fit: cover;
+}
+
+/* Media query for mobile */
+@media only screen and (max-width: 768px) {
+  .middle {
+    display: none;
+  }
+
+  .right .searchmini {
+    opacity: 1;
+  }
+
+  .headingContainer {
+    padding: 0 15px;
+  }
+
+  .right {
+    gap: 10px;
+  }
+
+  .user {
+    margin-left: 10px;
+  }
+}
+
+.searchmini {
+  opacity: 0;
+}

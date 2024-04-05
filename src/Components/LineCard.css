@@ -1,0 +1,29 @@
+.linecardcontainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0F0F0F;
+    padding: 5px 10px;
+    margin: 0 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease-in-out .2s;
+    /* border: 1px solid white; */
+}
+.linecardcontainer:hover{
+    background-color: #3D3D3D;
+    transition: all ease-in-out .2s;
+}
+.linecardright{
+    width: 73%;
+}
+.linecardleft{
+    height: 30px;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.linecardleft img{
+    filter: invert(100%);
+}
