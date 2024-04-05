@@ -31,7 +31,9 @@ import setting from "../assets/setting.svg";
 import report from "../assets/report.svg";
 import help from "../assets/help.svg";
 import send from "../assets/send.svg";
-import {GetVideosBySearch} from "../API/GetVideosBySearch"
+import { GetVideosBySearch } from "../API/GetVideosBySearch";
+import { GetVideoById } from "../API/GetVideoById";
+import data from "../API/data.json";
 
 const set5 = [
   { icon: setting, text: "Setting" },
@@ -45,6 +47,7 @@ const set4 = [
   { icon: ytmusic, text: "YouTube Music" },
   { icon: ytkids, text: "YouTube Kids" },
 ];
+
 const set3 = [
   { icon: trending, text: "Trending" },
   { icon: shopping, text: "Shopping" },
@@ -58,6 +61,7 @@ const set3 = [
   { icon: fashion, text: "Fashion" },
   { icon: podcasts, text: "Podcasts" },
 ];
+
 const set1 = [
   { icon: homeicon, text: "Home" },
   { icon: shortsicon, text: "Shorts" },
@@ -72,7 +76,7 @@ const set2 = [
   { icon: likedvideos, text: "Liked videos" },
 ];
 
-function Home({ toggleMenu,searchData }) {
+function Home({ toggleMenu, searchData }) {
   const sidebar = useRef(null);
   const hiddensidebar = useRef(null);
 
@@ -96,15 +100,33 @@ function Home({ toggleMenu,searchData }) {
   }, [toggleMenu]);
 
   // -------------------------------------API WORKINGS------------------------------------- //
-const [videoList,setvideoList]=useState([]);
+  const [videoList, setvideoList] = useState([]);
+  const [completeVideoList, setcompleteVideoList] = useState([]);
 
   useEffect(() => {
-    GetVideosBySearch(searchData).then((res)=>{
-      setvideoList(res.items)
-    })
-  }, [searchData])
+    // GetVideosBySearch(searchData).then((res)=>{
+    //   setvideoList(res.items)
+    //   console.log(res.items);
+    // })
+    setvideoList(data.items);
+    // console.log(data.items);
+  }, []);
+
+  useEffect(() => {
+    Promise.all(videoList.map(video => GetVideoById(video.id.videoId)))
+      .then(responses => {
+        const updatedVideoList = responses.map((res, index) => ({
+          ...videoList[index],
+          statistics: res.items[0].statistics
+        }));
+        setcompleteVideoList(updatedVideoList);
+      })
+      .catch(error => {
+        console.error("Error fetching video statistics:", error);
+      });
+  }, [videoList]);
   
-  
+
   // -------------------------------------API WORKINGS------------------------------------- //
   return (
     <div className="homeContainer">
@@ -160,13 +182,15 @@ const [videoList,setvideoList]=useState([]);
         })}
       </div>
       <div className="homeright">
-        {
-          videoList.map((item,index)=>{
-            const image = item.snippet.thumbnails.high.url;
-            const title = item.snippet.title;
-            return <Card image={image} title={title}/>
-          })
-        }
+        {completeVideoList.map((item, index) => {
+          const image = item.snippet.thumbnails.high.url;
+          const title = item.snippet.title;
+          const channel = item.snippet.channelTitle;
+          const views = item.statistics.viewCount;
+          const time=item.snippet.publishedAt;
+          console.log(item);
+          return <Card key={index} image={image} title={title} channel={channel} views={views} time={time}/>
+        })}
       </div>
     </div>
   );

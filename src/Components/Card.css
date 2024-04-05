@@ -20,3 +20,19 @@
     width: 100%;
     object-fit: cover;
 }
+.viewnday{
+    display: flex;
+    gap: .7rem;
+}
+.cardbottom h4{
+    font-size: .95rem;
+}
+.cardbottom p{
+    font-size: .9rem;
+    color: #939393;
+}
+.cardbottom{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
