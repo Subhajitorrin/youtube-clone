@@ -5,6 +5,8 @@
 }
 .homeContainer .homeleft{
     width: 240px;
+    height: calc(100vh - 56px);
+    overflow-y: auto;
     background-color: #0F0F0F;
     transition: all .3s ease-in-out;
     /* height: 100%; */
@@ -53,3 +55,26 @@
         display: none;
     }
 }
+
+
+/* Define scrollbar width and track color */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Define scrollbar track color */
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a; /* Black */
+  }
+  
+  /* Define scrollbar thumb color */
+  ::-webkit-scrollbar-thumb {
+    background: #3c3c3c; /* Dark gray */
+    border-radius: 6px;
+  }
+  
+  /* Define scrollbar thumb on hover color */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #444444; /* Light gray */
+  }
+  

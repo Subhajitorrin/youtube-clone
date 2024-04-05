@@ -13,7 +13,6 @@ import playlist from "../assets/playlists.svg";
 import yourvideos from "../assets/yourvideos.svg";
 import watchlater from "../assets/watchlater.svg";
 import likedvideos from "../assets/likedvideos.svg";
-
 import trending from "../assets/trending.svg";
 import shopping from "../assets/shopping.svg";
 import music from "../assets/music.svg";
@@ -25,8 +24,31 @@ import sports from "../assets/sports.svg";
 import courses from "../assets/courses.svg";
 import fashion from "../assets/fashion.svg";
 import podcasts from "../assets/podcasts.svg";
+import ytpremium from "../assets/ytpremium.svg";
+import ytstudio from "../assets/ytstudio.svg";
+import ytmusic from "../assets/ytmusic.svg";
+import ytkids from "../assets/ytkids.svg";
+import setting from "../assets/setting.svg"
+import report from "../assets/report.svg"
+import help from "../assets/help.svg"
+import send from "../assets/send.svg"
+
+
+const set5=[
+  { icon: setting, text: "Setting" },
+  { icon: report, text: "Report History" },
+  { icon: help, text: "Help" },
+  { icon: send, text: "Send feedback" },
+]
+const set4 = [
+  { icon: ytpremium, text: "YouTube Premium" },
+  { icon: ytstudio, text: "YouTube Studio" },
+  { icon: ytmusic, text: "YouTube Music" },
+  { icon: ytkids, text: "YouTube Kids" }
+];
 const set3 = [
   { icon: trending, text: "Trending" },
+  { icon: shopping, text: "Shopping" },
   { icon: music, text: "Music" },
   { icon: movies, text: "Movies" },
   { icon: live, text: "Live" },
@@ -112,7 +134,22 @@ function Home({ toggleMenu, setToggleMenu }) {
         <h4 style={{ marginLeft: "22px", marginBottom: "10px" }}>Explore</h4>
         {
           set3.map((item,index)=>{
-            
+            return <LineCard key={index} icon={item.icon} text={item.text} />;
+          })
+        }
+        <Line />
+        {/* set4 */}
+        <h4 style={{ marginLeft: "22px", marginBottom: "10px" }}>More from YouTube</h4>
+        {
+          set4.map((item,index)=>{
+            return <LineCard key={index} icon={item.icon} text={item.text} />;
+          })
+        }
+        <Line />
+        {/* set5 */}
+        {
+          set5.map((item,index)=>{
+            return <LineCard key={index} icon={item.icon} text={item.text} />;
           })
         }
       </div>
