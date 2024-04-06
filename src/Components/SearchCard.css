@@ -1,22 +1,14 @@
 .searchCardContainer {
   /* border: 1px solid white; */
-  width: 70%;
-  display: flex;
-  gap: 1.5rem;
+  width: 80%;
+  /* display: flex; */
+  /* gap: 1.5rem; */
   cursor: pointer;
-}
-.searchCardLeft {
-  width: 450px;
-  height: 290px;
-  /* border: 1px solid white; */
-  overflow: hidden;
-  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Two columns, each taking up equal space */
+  gap: 15px;
 }
 
-.searchCardLeft img {
-  width: 450px;
-  height: 290px;
-}
 
 .searchCardRight h4 {
   font-size: 0.95rem;
@@ -28,6 +20,7 @@
 .searchCardRight {
   display: flex;
   flex-direction: column;
+  /* border: 1px solid white; */
 }
 .channelname {
   font-weight: bold;
@@ -42,20 +35,37 @@
 
 @media only screen and (max-width: 768px) {
   .searchCardContainer {
-    flex-direction: column;
     /* border: 1px solid white; */
-    width: 90%;
-  }
-  .searchCardLeft img {
     width: 450px;
-    height: 290px;
+    grid-template-columns: 1fr;
   }
   .searchCardContainer .searchCardRight h4 {
     font-size: 1rem;
+  }
+  .searchCardRight {
+    width: 100%;
+  }
+  .searchCardLeft {
+    width: 100%;
+    /* border: 1px solid white; */
   }
 }
 
 .mobile {
   gap: 10px;
   margin-bottom: 15px;
+}
+.searchCardLeft {
+  /* border: 1px solid white; */
+  border-radius: 20px;
+  width: 450px;
+  height: 290px;
+  overflow: hidden;
+}
+
+.searchCardLeft img {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  /* background-color: #ccc; Set a background color */
 }

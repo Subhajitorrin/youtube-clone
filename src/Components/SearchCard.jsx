@@ -60,7 +60,7 @@ function SearchCard({ image, title, channel, views, time, desc }) {
   return (
     <div className={`searchCardContainer ${isMobile ? "mobile" : "desktop"}`}>
       <div className="searchCardLeft">
-        <img src={image} alt="" />
+        <img src={image} alt="" className="img" />
       </div>
       <div className="searchCardRight">
         {isMobile ? (
