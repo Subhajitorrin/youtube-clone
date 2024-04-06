@@ -11,9 +11,7 @@ function App() {
     <Router>
       <div>
         <Heading toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} setsearchData={setsearchData}/>
-        <Routes>
-          <Route path="/" element={<Home toggleMenu={toggleMenu} searchData={searchData}/>} />
-        </Routes>
+        <Home toggleMenu={toggleMenu} searchData={searchData}/>
       </div>
     </Router>
   );

@@ -35,6 +35,8 @@ import { GetVideosBySearch } from "../API/GetVideosBySearch";
 import { GetVideoById } from "../API/GetVideoById";
 import data from "../API/data.json";
 import HomeCardList from "./HomeCardList";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Search from "../Components/Search"
 
 const set5 = [
   { icon: setting, text: "Setting" },
@@ -86,24 +88,23 @@ function Home({ toggleMenu, searchData }) {
     cards.push(i);
   }
 
-  
-  function handelBigScreen(){
-    sidebar.current.classList.remove('ooyeh');
-    if(hiddensidebar.current.classList.contains('active')){
-      hiddensidebar.current.classList.remove('active');
-      sidebar.current.classList.add('active');
-    }else{
-      sidebar.current.classList.remove('active');
-      hiddensidebar.current.classList.add('active');
+  function handelBigScreen() {
+    sidebar.current.classList.remove("ooyeh");
+    if (hiddensidebar.current.classList.contains("active")) {
+      hiddensidebar.current.classList.remove("active");
+      sidebar.current.classList.add("active");
+    } else {
+      sidebar.current.classList.remove("active");
+      hiddensidebar.current.classList.add("active");
     }
   }
-  function handelSmallScreen(){
-    hiddensidebar.current.classList.remove('active');
-    sidebar.current.classList.add('ooyeh');
-    if(sidebar.current.classList.contains('active')){
-      sidebar.current.classList.remove('active');
-    }else{
-      sidebar.current.classList.add('active');
+  function handelSmallScreen() {
+    hiddensidebar.current.classList.remove("active");
+    sidebar.current.classList.add("ooyeh");
+    if (sidebar.current.classList.contains("active")) {
+      sidebar.current.classList.remove("active");
+    } else {
+      sidebar.current.classList.add("active");
     }
   }
 
@@ -120,11 +121,11 @@ function Home({ toggleMenu, searchData }) {
     handleResize();
 
     // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     // Cleanup function to remove event listener when component unmounts
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, [toggleMenu]);
 
@@ -154,10 +155,10 @@ function Home({ toggleMenu, searchData }) {
   //       console.error("Error fetching video statistics:", error);
   //     });
   // }, [videoList]);
-  
+
   useEffect(() => {
-    setcompleteVideoList(data)
-  }, [])
+    setcompleteVideoList(data);
+  }, []);
 
   // -------------------------------------API WORKINGS------------------------------------- //
   return (
@@ -214,7 +215,16 @@ function Home({ toggleMenu, searchData }) {
         })}
       </div>
       <div className="homeright">
-        <HomeCardList completeVideoList={completeVideoList}/>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomeCardList completeVideoList={completeVideoList} />}
+          />
+          <Route
+            path="/search"
+            element={<Search/>}
+          />
+        </Routes>
       </div>
     </div>
   );

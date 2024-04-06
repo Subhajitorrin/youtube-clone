@@ -64,15 +64,19 @@ a {
   gap: 1rem;
 }
 
-.search {
+.search{
   width: 567px;
   height: 40px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   border-radius: 50px;
   overflow: hidden;
   background-color: #222222;
   border: 1px solid #303030;
+}
+.hiddenInput {
+  display: none;
 }
 
 .searchInput {
@@ -88,7 +92,7 @@ a {
 }
 
 .searchIcon {
-  width: 10%;
+  width: 100%;
   font-size: 1.5rem;
   cursor: pointer;
 }
@@ -181,4 +185,63 @@ a {
 
 .searchmini {
   opacity: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+  .search {
+    width: 80%;
+  }
+  .search input {
+    width: 80%;
+  }
+  .search {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.searchContainer {
+  /* border: 1px solid white; */
+  flex: auto;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hiddensearch{
+  background-color: #0F0F0F;
+  width: 95%;
+  position: absolute;
+  /* border: 1px solid white; */
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.hiddensearch .search{
+  width: 70%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.hiddensearch .searchContainer{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hiddensearch input{
+  padding-left: 20px;
+}
+.hiddensearch{
+  display: none;
+}
+.arrow{
+  cursor: pointer;
+}
+.search input{
+  padding-left: 20px;
 }

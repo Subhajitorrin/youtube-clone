@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef,useEffect } from "react";
 import "./Heading.css";
 import { RiMenuLine } from "react-icons/ri";
 import youtubelogo from "../assets/youtube.svg";
@@ -6,20 +6,42 @@ import { IoIosSearch } from "react-icons/io";
 import { FaMicrophone } from "react-icons/fa6";
 import { MdVideoCall } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
-function Heading({toggleMenu,setToggleMenu,setsearchData}) {
-  const [input,setInput]=useState("");
-  function handelMenuClick(){
+function Heading({ toggleMenu, setToggleMenu, setsearchData }) {
+  const [input, setInput] = useState("");
+  const hiddensearch = useRef(null);
+
+  function handelMenuClick() {
     setToggleMenu(!toggleMenu);
   }
-  function handelSearch(){
+  function handelSearch() {
     setsearchData(input);
   }
+  function handelMiniSearch() {
+    hiddensearch.current.style.display='flex';
+  }
+  function handelBack(){
+    hiddensearch.current.style.display='none';
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        hiddensearch.current.style.display = "none";
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="headingContainer">
       <div className="left">
-        <RiMenuLine className="menu" onClick={handelMenuClick}/>
+        <RiMenuLine className="menu" onClick={handelMenuClick} />
         <Link to="/">
           <div className="logo">
             <img src={youtubelogo} />
@@ -28,10 +50,36 @@ function Heading({toggleMenu,setToggleMenu,setsearchData}) {
           </div>
         </Link>
       </div>
+
+      <div className="hiddensearch" ref={hiddensearch}>
+        <FaArrowLeft className="arrow" onClick={handelBack}/>
+        <div className="search">
+          <input
+            type="search"
+            className="searchInput"
+            placeholder="Search"
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <Link to="/search" className="searchContainer">
+            <IoIosSearch className="searchIcon" onClick={handelSearch} />
+          </Link>
+        </div>
+        <div className="micContainer">
+          <FaMicrophone className="mic" />
+        </div>
+      </div>
+
       <div className="middle">
         <div className="search">
-          <input type="search" className="searchInput" placeholder="Search" onChange={(e) => setInput(e.target.value)}/>
-          <IoIosSearch className="searchIcon" onClick={handelSearch}/>
+          <input
+            type="search"
+            className="searchInput"
+            placeholder="Search"
+            onChange={(e) => setInput(e.target.value)}
+          />
+          <Link to="/search" className="searchContainer">
+            <IoIosSearch className="searchIcon" onClick={handelSearch} />
+          </Link>
         </div>
         <div className="micContainer">
           <FaMicrophone className="mic" />
@@ -39,7 +87,7 @@ function Heading({toggleMenu,setToggleMenu,setsearchData}) {
       </div>
       <div className="right">
         <div className="iconContainer searchmini">
-        <IoIosSearch className="" />
+          <IoIosSearch className="" onClick={handelMiniSearch} />
         </div>
         <div className="iconContainer">
           <MdVideoCall className="icon" />
