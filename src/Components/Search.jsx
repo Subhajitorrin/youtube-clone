@@ -5,9 +5,17 @@ import { GetVideoById } from "../API/GetVideoById";
 import SearchCard from "./SearchCard";
 import data from "../API/data.json";
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
 function Search({ searchData }) {
   const [videoList, setvideoList] = useState([]);
   const [completeVideoList, setcompleteVideoList] = useState([]);
+  const [suggestedVideoList, setSuggestedVideoList] = useState([]);
 
   // useEffect(() => {
   //   GetVideosBySearch(searchData).then((res) => {
@@ -30,8 +38,9 @@ function Search({ searchData }) {
   // }, [videoList]);
 
   useEffect(() => {
-    setcompleteVideoList(data);
-    console.log(data[0]);
+    shuffleArray(data);
+    setSuggestedVideoList(data);
+    // console.log(data[0]);
   }, []);
 
   return (
@@ -56,6 +65,35 @@ function Search({ searchData }) {
           />
         );
       })}
+
+      <div className="searchLineContainer">
+        <div className="searchLine"></div>
+        <h4>People also watched</h4>
+      </div>
+
+      {
+        // suggested videos
+        suggestedVideoList.map((item, index) => {
+          const image = item.snippet.thumbnails.high.url;
+          const title = item.snippet.title;
+          const channel = item.snippet.channelTitle;
+          const views = item.statistics.viewCount;
+          const time = item.snippet.publishedAt;
+          const desc = item.snippet.description;
+          // console.log(item);
+          return (
+            <SearchCard
+              key={index}
+              image={image}
+              title={title}
+              channel={channel}
+              views={views}
+              time={time}
+              desc={desc}
+            />
+          );
+        })
+      }
     </div>
   );
 }

@@ -36,7 +36,7 @@ import { GetVideoById } from "../API/GetVideoById";
 import data from "../API/data.json";
 import HomeCardList from "./HomeCardList";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Search from "../Components/Search"
+import Search from "../Components/Search";
 
 const set5 = [
   { icon: setting, text: "Setting" },
@@ -108,6 +108,13 @@ function Home({ toggleMenu, searchData }) {
     }
   }
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth >= 768) {
@@ -130,33 +137,10 @@ function Home({ toggleMenu, searchData }) {
   }, [toggleMenu]);
 
   // -------------------------------------API WORKINGS------------------------------------- //
-  const [videoList, setvideoList] = useState([]);
   const [completeVideoList, setcompleteVideoList] = useState([]);
 
-  // useEffect(() => {
-  //   // GetVideosBySearch(searchData).then((res)=>{
-  //   //   setvideoList(res.items)
-  //   //   // console.log(res.items);
-  //   // })
-  //   // setvideoList(data.items);
-  //   // console.log(data.items);
-  // }, [searchData]);
-
-  // useEffect(() => {
-  //   Promise.all(videoList.map(video => GetVideoById(video.id.videoId)))
-  //     .then(responses => {
-  //       const updatedVideoList = responses.map((res, index) => ({
-  //         ...videoList[index],
-  //         statistics: res.items[0].statistics
-  //       }));
-  //       setcompleteVideoList(updatedVideoList);
-  //     })
-  //     .catch(error => {
-  //       console.error("Error fetching video statistics:", error);
-  //     });
-  // }, [videoList]);
-
   useEffect(() => {
+    shuffleArray(data);
     setcompleteVideoList(data);
   }, []);
 
@@ -220,10 +204,7 @@ function Home({ toggleMenu, searchData }) {
             path="/"
             element={<HomeCardList completeVideoList={completeVideoList} />}
           />
-          <Route
-            path="/search"
-            element={<Search searchData={searchData}/>}
-          />
+          <Route path="/search" element={<Search searchData={searchData} />} />
         </Routes>
       </div>
     </div>
