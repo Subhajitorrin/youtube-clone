@@ -1,4 +1,4 @@
-import React, { useState, useRef,useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./Heading.css";
 import { RiMenuLine } from "react-icons/ri";
 import youtubelogo from "../assets/youtube.svg";
@@ -8,22 +8,32 @@ import { MdVideoCall } from "react-icons/md";
 import { IoIosNotificationsOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import LoadingBar from "react-top-loading-bar";
 
 function Heading({ toggleMenu, setToggleMenu, setsearchData }) {
   const [input, setInput] = useState("");
   const hiddensearch = useRef(null);
+  const [progress, setProgress] = useState(0);
 
   function handelMenuClick() {
     setToggleMenu(!toggleMenu);
   }
   function handelSearch() {
     setsearchData(input);
+    const delays = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+    const increments = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+    delays.forEach((delay, index) => {
+      setTimeout(() => {
+        setProgress(increments[index]);
+      }, delay);
+    });
   }
   function handelMiniSearch() {
-    hiddensearch.current.style.display='flex';
+    hiddensearch.current.style.display = "flex";
   }
-  function handelBack(){
-    hiddensearch.current.style.display='none';
+  function handelBack() {
+    hiddensearch.current.style.display = "none";
   }
 
   useEffect(() => {
@@ -40,6 +50,11 @@ function Heading({ toggleMenu, setToggleMenu, setsearchData }) {
 
   return (
     <div className="headingContainer">
+      <LoadingBar
+        color="#f11946"
+        progress={progress}
+        onLoaderFinished={() => setProgress(0)}
+      />
       <div className="left">
         <RiMenuLine className="menu" onClick={handelMenuClick} />
         <Link to="/">
@@ -52,7 +67,7 @@ function Heading({ toggleMenu, setToggleMenu, setsearchData }) {
       </div>
 
       <div className="hiddensearch" ref={hiddensearch}>
-        <FaArrowLeft className="arrow" onClick={handelBack}/>
+        <FaArrowLeft className="arrow" onClick={handelBack} />
         <div className="search">
           <input
             type="search"

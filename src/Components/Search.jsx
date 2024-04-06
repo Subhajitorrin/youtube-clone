@@ -16,6 +16,7 @@ function Search({ searchData }) {
   const [videoList, setvideoList] = useState([]);
   const [completeVideoList, setcompleteVideoList] = useState([]);
   const [suggestedVideoList, setSuggestedVideoList] = useState([]);
+  const [renderSuggestion, setrenderSuggestion] = useState(false);
 
   // useEffect(() => {
   //   GetVideosBySearch(searchData).then((res) => {
@@ -39,13 +40,16 @@ function Search({ searchData }) {
 
   useEffect(() => {
     shuffleArray(data);
-    setSuggestedVideoList(data);
+    setTimeout(() => {
+      setrenderSuggestion(true)
+      setSuggestedVideoList(data);
+    }, 1000);
     // console.log(data[0]);
   }, []);
 
   return (
     <div className="rightSearchContainer">
-      {completeVideoList.map((item, index) => {
+      {/* {completeVideoList.map((item, index) => {
         const image = item.snippet.thumbnails.high.url;
         const title = item.snippet.title;
         const channel = item.snippet.channelTitle;
@@ -64,12 +68,16 @@ function Search({ searchData }) {
             desc={desc}
           />
         );
-      })}
+      })} */}
 
-      <div className="searchLineContainer">
-        <div className="searchLine"></div>
-        <h4>People also watched</h4>
-      </div>
+      {renderSuggestion ? (
+        <div className="searchLineContainer">
+          <div className="searchLine"></div>
+          <h4>People also watched</h4>
+        </div>
+      ) : (
+        <></>
+      )}
 
       {
         // suggested videos

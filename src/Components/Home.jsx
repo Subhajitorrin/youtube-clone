@@ -35,7 +35,12 @@ import { GetVideosBySearch } from "../API/GetVideosBySearch";
 import { GetVideoById } from "../API/GetVideoById";
 import data from "../API/data.json";
 import HomeCardList from "./HomeCardList";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Search from "../Components/Search";
 
 const set5 = [
@@ -145,6 +150,7 @@ function Home({ toggleMenu, searchData }) {
   }, []);
 
   // -------------------------------------API WORKINGS------------------------------------- //
+
   return (
     <div className="homeContainer">
       <div className="hiddenleft active" ref={hiddensidebar}>
