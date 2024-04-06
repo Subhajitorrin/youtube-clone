@@ -34,6 +34,7 @@ import send from "../assets/send.svg";
 import { GetVideosBySearch } from "../API/GetVideosBySearch";
 import { GetVideoById } from "../API/GetVideoById";
 import data from "../API/data.json";
+import HomeCardList from "./HomeCardList";
 
 const set5 = [
   { icon: setting, text: "Setting" },
@@ -213,15 +214,7 @@ function Home({ toggleMenu, searchData }) {
         })}
       </div>
       <div className="homeright">
-        {completeVideoList.map((item, index) => {
-          const image = item.snippet.thumbnails.high.url;
-          const title = item.snippet.title;
-          const channel = item.snippet.channelTitle;
-          const views = item.statistics.viewCount;
-          const time=item.snippet.publishedAt;
-          // console.log(item);
-          return <Card key={index} image={image} title={title} channel={channel} views={views} time={time}/>
-        })}
+        <HomeCardList completeVideoList={completeVideoList}/>
       </div>
     </div>
   );
