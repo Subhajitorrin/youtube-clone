@@ -12,7 +12,7 @@ function shuffleArray(array) {
   }
 }
 
-function Video() {
+function Video({right}) {
   const [suggestedVideoList, setSuggestedVideoList] = useState([]);
   const { id } = useParams();
   const videoContainer = useRef(null);
@@ -24,8 +24,9 @@ function Video() {
   }, []);
 
   useEffect(() => {
-    videoContainer.current.scrollTo(0, 0);
+    right.current.scrollTo(0, 0);
   }, [id]);
+  
 
   return (
     <div className="VideoContainer" ref={videoContainer}>
@@ -33,7 +34,7 @@ function Video() {
         <iframe
           width="1280"
           height="725"
-          src={`https://www.youtube.com/embed/${id}?si=AKl7E_SUcdTmUOLP`}
+          src={`https://www.youtube.com/embed/${id}?autoplay=1&si=AKl7E_SUcdTmUOLP`}
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

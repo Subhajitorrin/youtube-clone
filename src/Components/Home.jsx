@@ -88,6 +88,7 @@ const set2 = [
 function Home({ toggleMenu, searchData }) {
   const sidebar = useRef(null);
   const hiddensidebar = useRef(null);
+  const right=useRef(null);
 
   const cards = [];
   for (let i = 0; i < 100; i++) {
@@ -205,14 +206,14 @@ function Home({ toggleMenu, searchData }) {
           return <LineCard key={index} icon={item.icon} text={item.text} />;
         })}
       </div>
-      <div className="homeright">
+      <div className="homeright" ref={right}>
         <Routes>
           <Route
             path="/"
             element={<HomeCardList completeVideoList={completeVideoList} />}
           />
           <Route path="/search" element={<Search searchData={searchData} />} />
-          <Route path="/video/:id" element={<Video />} />
+          <Route path="/video/:id" element={<Video right={right}/>} />
         </Routes>
       </div>
     </div>

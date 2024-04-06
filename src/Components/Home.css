@@ -23,6 +23,7 @@
     justify-content: space-evenly;
     row-gap: 20px;
     flex-wrap: wrap;
+    scroll-behavior: smooth;
 }
 .hiddenleft{
     width: 70px;
