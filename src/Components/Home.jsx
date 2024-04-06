@@ -103,29 +103,32 @@ function Home({ toggleMenu, searchData }) {
   const [videoList, setvideoList] = useState([]);
   const [completeVideoList, setcompleteVideoList] = useState([]);
 
-  useEffect(() => {
-    // GetVideosBySearch(searchData).then((res)=>{
-    //   setvideoList(res.items)
-    //   console.log(res.items);
-    // })
-    setvideoList(data.items);
-    // console.log(data.items);
-  }, []);
+  // useEffect(() => {
+  //   // GetVideosBySearch(searchData).then((res)=>{
+  //   //   setvideoList(res.items)
+  //   //   // console.log(res.items);
+  //   // })
+  //   // setvideoList(data.items);
+  //   // console.log(data.items);
+  // }, [searchData]);
 
-  useEffect(() => {
-    Promise.all(videoList.map(video => GetVideoById(video.id.videoId)))
-      .then(responses => {
-        const updatedVideoList = responses.map((res, index) => ({
-          ...videoList[index],
-          statistics: res.items[0].statistics
-        }));
-        setcompleteVideoList(updatedVideoList);
-      })
-      .catch(error => {
-        console.error("Error fetching video statistics:", error);
-      });
-  }, [videoList]);
+  // useEffect(() => {
+  //   Promise.all(videoList.map(video => GetVideoById(video.id.videoId)))
+  //     .then(responses => {
+  //       const updatedVideoList = responses.map((res, index) => ({
+  //         ...videoList[index],
+  //         statistics: res.items[0].statistics
+  //       }));
+  //       setcompleteVideoList(updatedVideoList);
+  //     })
+  //     .catch(error => {
+  //       console.error("Error fetching video statistics:", error);
+  //     });
+  // }, [videoList]);
   
+  useEffect(() => {
+    setcompleteVideoList(data)
+  }, [])
 
   // -------------------------------------API WORKINGS------------------------------------- //
   return (
@@ -188,7 +191,7 @@ function Home({ toggleMenu, searchData }) {
           const channel = item.snippet.channelTitle;
           const views = item.statistics.viewCount;
           const time=item.snippet.publishedAt;
-          console.log(item);
+          // console.log(item);
           return <Card key={index} image={image} title={title} channel={channel} views={views} time={time}/>
         })}
       </div>
