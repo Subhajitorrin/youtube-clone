@@ -1,6 +1,7 @@
 .cardContainer{
     /* background-color: lightseagreen; */
     width: 310px;
+    cursor: pointer;
 }
 .cardtop{
     border-radius: 15px;

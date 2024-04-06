@@ -85,18 +85,46 @@ function Home({ toggleMenu, searchData }) {
     cards.push(i);
   }
 
-  function homeleft() {
-    if (toggleMenu) {
-      sidebar.current.style.display = "block";
-      hiddensidebar.current.style.display = "none";
-    } else {
-      sidebar.current.style.display = "none";
-      hiddensidebar.current.style.display = "block";
+  
+  function handelBigScreen(){
+    sidebar.current.classList.remove('ooyeh');
+    if(hiddensidebar.current.classList.contains('active')){
+      hiddensidebar.current.classList.remove('active');
+      sidebar.current.classList.add('active');
+    }else{
+      sidebar.current.classList.remove('active');
+      hiddensidebar.current.classList.add('active');
+    }
+  }
+  function handelSmallScreen(){
+    hiddensidebar.current.classList.remove('active');
+    sidebar.current.classList.add('ooyeh');
+    if(sidebar.current.classList.contains('active')){
+      sidebar.current.classList.remove('active');
+    }else{
+      sidebar.current.classList.add('active');
     }
   }
 
   useEffect(() => {
-    homeleft();
+    function handleResize() {
+      if (window.innerWidth >= 768) {
+        handelBigScreen();
+      } else {
+        handelSmallScreen();
+      }
+    }
+
+    // Call handleResize initially
+    handleResize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup function to remove event listener when component unmounts
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
   }, [toggleMenu]);
 
   // -------------------------------------API WORKINGS------------------------------------- //

@@ -50,13 +50,6 @@
     height: 26px;
 }
 
-@media only screen and (max-width: 768px) {
-    .hiddenleft{
-        display: none;
-    }
-}
-
-
 /* Define scrollbar width and track color */
 ::-webkit-scrollbar {
     width: 8px;
@@ -78,3 +71,26 @@
     background: #444444; /* Light gray */
   }
   
+  .homeContainer .ooyeh{
+    position: absolute;
+  }
+
+  .hiddenleft{
+    display: none;
+  }
+  .homeleft{
+    display: none;
+  }
+
+  .homeContainer .active{
+    display: block;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .hiddenleft{
+        display: none;
+    }
+    .homeleft{
+        display: none;
+    }
+  }
