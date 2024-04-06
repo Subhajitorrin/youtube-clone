@@ -1,0 +1,17 @@
+.rightSearchContainer{
+    width: 100%;
+    padding: 1rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+    /* border: 1px solid white; */
+}
+
+@media only screen and (max-width: 768px) {
+    .rightSearchContainer{
+        /* border: 1px solid white; */
+        padding: 1rem 0;
+    }
+}

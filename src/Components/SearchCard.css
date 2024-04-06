@@ -1,0 +1,61 @@
+.searchCardContainer {
+  /* border: 1px solid white; */
+  width: 70%;
+  display: flex;
+  gap: 1.5rem;
+  cursor: pointer;
+}
+.searchCardLeft {
+  width: 450px;
+  height: 290px;
+  /* border: 1px solid white; */
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.searchCardLeft img {
+  width: 450px;
+  height: 290px;
+}
+
+.searchCardRight h4 {
+  font-size: 0.95rem;
+}
+.searchCardRight p {
+  font-size: 0.9rem;
+  color: #939393;
+}
+.searchCardRight {
+  display: flex;
+  flex-direction: column;
+}
+.channelname {
+  font-weight: bold;
+}
+.title {
+  margin-bottom: 3px;
+}
+.searchCardRight .title {
+  font-size: 1.3rem;
+  font-weight: 100;
+}
+
+@media only screen and (max-width: 768px) {
+  .searchCardContainer {
+    flex-direction: column;
+    /* border: 1px solid white; */
+    width: 90%;
+  }
+  .searchCardLeft img {
+    width: 450px;
+    height: 290px;
+  }
+  .searchCardContainer .searchCardRight h4 {
+    font-size: 1rem;
+  }
+}
+
+.mobile {
+  gap: 10px;
+  margin-bottom: 15px;
+}

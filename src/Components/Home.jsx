@@ -222,7 +222,7 @@ function Home({ toggleMenu, searchData }) {
           />
           <Route
             path="/search"
-            element={<Search/>}
+            element={<Search searchData={searchData}/>}
           />
         </Routes>
       </div>
