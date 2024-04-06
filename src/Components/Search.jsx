@@ -56,6 +56,7 @@ function Search({ searchData }) {
         const views = item.statistics.viewCount;
         const time = item.snippet.publishedAt;
         const desc = item.snippet.description;
+        const id = item.id.videoId;
         // console.log(item);
         return (
           <SearchCard
@@ -66,6 +67,7 @@ function Search({ searchData }) {
             views={views}
             time={time}
             desc={desc}
+            id={id}
           />
         );
       })}
@@ -88,6 +90,7 @@ function Search({ searchData }) {
           const views = item.statistics.viewCount;
           const time = item.snippet.publishedAt;
           const desc = item.snippet.description;
+          const id = item.id.videoId;
           // console.log(item);
           return (
             <SearchCard
@@ -98,6 +101,7 @@ function Search({ searchData }) {
               views={views}
               time={time}
               desc={desc}
+              id={id}
             />
           );
         })

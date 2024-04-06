@@ -1,6 +1,7 @@
 import React from "react";
 import "./SearchCard.css";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function formatNumber(num) {
   if (num >= 1000000000) {
@@ -45,7 +46,7 @@ function timeAgo(timestamp) {
   }
 }
 
-function SearchCard({ image, title, channel, views, time, desc }) {
+function SearchCard({ image, title, channel, views, time, desc, id }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   useEffect(() => {
     const handleResize = () => {
@@ -58,37 +59,39 @@ function SearchCard({ image, title, channel, views, time, desc }) {
   }, []);
 
   return (
-    <div className={`searchCardContainer ${isMobile ? "mobile" : "desktop"}`}>
-      <div className="searchCardLeft">
-        <img src={image} alt="" className="img" />
-      </div>
-      <div className="searchCardRight">
-        {isMobile ? (
-          <div>
-            <h4 className="title">{title.slice(0, 60)}</h4>
-            <div className="viewnday">
-              <p className="channelname">{channel}</p>
-              <p>{formatNumber(views)}</p>
-              <p>{timeAgo(time)}</p>
-            </div>
-          </div>
-        ) : (
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
-          >
+    <Link to={`https://www.youtube.com/watch?v=${id}`}>
+      <div className={`searchCardContainer ${isMobile ? "mobile" : "desktop"}`}>
+        <div className="searchCardLeft">
+          <img src={image} alt="" className="img" />
+        </div>
+        <div className="searchCardRight">
+          {isMobile ? (
             <div>
               <h4 className="title">{title.slice(0, 60)}</h4>
               <div className="viewnday">
+                <p className="channelname">{channel}</p>
                 <p>{formatNumber(views)}</p>
                 <p>{timeAgo(time)}</p>
               </div>
             </div>
-            <p className="channelname">{channel}</p>
-            <p className="desv">{desc}</p>
-          </div>
-        )}
+          ) : (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "1rem" }}
+            >
+              <div>
+                <h4 className="title">{title.slice(0, 60)}</h4>
+                <div className="viewnday">
+                  <p>{formatNumber(views)}</p>
+                  <p>{timeAgo(time)}</p>
+                </div>
+              </div>
+              <p className="channelname">{channel}</p>
+              <p className="desv">{desc}</p>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

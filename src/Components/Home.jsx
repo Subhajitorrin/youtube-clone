@@ -42,6 +42,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import Search from "../Components/Search";
+import Video from "../Components/Video"
 
 const set5 = [
   { icon: setting, text: "Setting" },
@@ -211,6 +212,7 @@ function Home({ toggleMenu, searchData }) {
             element={<HomeCardList completeVideoList={completeVideoList} />}
           />
           <Route path="/search" element={<Search searchData={searchData} />} />
+          <Route path="/video/:id" element={<Video/>} />
         </Routes>
       </div>
     </div>

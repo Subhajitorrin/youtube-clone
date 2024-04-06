@@ -1,7 +1,8 @@
 import React from "react";
 import "./Card.css";
+import { Link } from "react-router-dom";
 
-function Card({ image, title, channel, views,time }) {
+function Card({ image, title, channel, views, time, id }) {
   function formatNumber(num) {
     if (num >= 1000000000) {
       return (num / 1000000000).toFixed(1) + "B";
@@ -45,19 +46,21 @@ function Card({ image, title, channel, views,time }) {
     }
   }
   return (
-    <div className="cardContainer">
-      <div className="cardtop">
-        <img src={image} alt="" />
-      </div>
-      <div className="cardbottom">
-        <h4>{title.slice(0, 60)}</h4>
-        <p>{channel}</p>
-        <div className="viewnday">
-          <p>{formatNumber(views)}</p>
-          <p>{timeAgo(time)}</p>
+    <Link to={`/video/${id}`}>
+      <div className="cardContainer">
+        <div className="cardtop">
+          <img src={image} alt="" />
+        </div>
+        <div className="cardbottom">
+          <h4>{title.slice(0, 60)}</h4>
+          <p>{channel}</p>
+          <div className="viewnday">
+            <p>{formatNumber(views)}</p>
+            <p>{timeAgo(time)}</p>
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
