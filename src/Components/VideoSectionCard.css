@@ -19,3 +19,15 @@
     width: 100%;
     object-fit: cover;
 }
+.videoCardRight h4{
+    font-size: 1rem;
+}
+.videoCardRight p{
+    font-size: .8rem;
+    color: #AAAAAA;
+}
+.videoCardRight{
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}

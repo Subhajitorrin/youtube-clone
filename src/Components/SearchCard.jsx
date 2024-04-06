@@ -59,7 +59,7 @@ function SearchCard({ image, title, channel, views, time, desc, id }) {
   }, []);
 
   return (
-    <Link to={`https://www.youtube.com/watch?v=${id}`}>
+    <Link to={`/video/${id}`}>
       <div className={`searchCardContainer ${isMobile ? "mobile" : "desktop"}`}>
         <div className="searchCardLeft">
           <img src={image} alt="" className="img" />

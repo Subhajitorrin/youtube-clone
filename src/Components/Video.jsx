@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./Video.css";
 import data from "../API/data.json";
@@ -15,6 +15,7 @@ function shuffleArray(array) {
 function Video() {
   const [suggestedVideoList, setSuggestedVideoList] = useState([]);
   const { id } = useParams();
+  const videoContainer = useRef(null);
 
   useEffect(() => {
     shuffleArray(data);
@@ -22,8 +23,12 @@ function Video() {
     console.log(data[0]);
   }, []);
 
+  useEffect(() => {
+    videoContainer.current.scrollTo(0, 0);
+  }, [id]);
+
   return (
-    <div className="VideoContainer">
+    <div className="VideoContainer" ref={videoContainer}>
       <div className="videoLeft">
         <iframe
           width="1280"
