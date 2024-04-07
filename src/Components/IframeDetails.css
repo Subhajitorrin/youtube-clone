@@ -241,3 +241,18 @@
     display: none;
   }
 }
+.commentsheading{
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  border-bottom: 1px solid rgb(110, 110, 110);
+  padding-bottom: 1rem;
+}
+.commentsort{
+  display: flex;
+  gap: 7px;
+  align-items: center;
+}
+.sorticon{
+  font-size: 1.5rem;
+}

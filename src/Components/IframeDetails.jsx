@@ -11,6 +11,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { GetChannelDetail } from "../API/GetChannelDetail";
 import { GetCommentsByVideoId } from "../API/GetCommentsByVideoId";
 import CommentCard from "./CommentCard";
+import { MdOutlineSort } from "react-icons/md";
 
 function formatNumber(num) {
   if (num >= 1000000000) {
@@ -67,7 +68,7 @@ function IframeDetails({ id }) {
   const [desc, setdesc] = useState("");
   const [commentList, setcommentList] = useState([]);
   const descX = useRef(null);
-  const seeless = useRef(null);
+  const [totalComment, setTotalComment] = useState(0);
 
   useEffect(() => {
     GetVideoDetailsSnippetStatistics(id).then((res) => {
@@ -81,6 +82,7 @@ function IframeDetails({ id }) {
       settime(data[0].snippet.publishedAt);
       setviews(data[0].statistics.viewCount);
       setdesc(data[0].snippet.description);
+      setTotalComment(data[0].statistics.commentCount);
     });
     GetCommentsByVideoId(id, 10).then((res) => {
       setcommentList(res.items);
@@ -169,6 +171,13 @@ function IframeDetails({ id }) {
       </div>
       <div className="supportDesc"></div>
       <div className="commentsection">
+        <div className="commentsheading">
+          <h4>{formatNumber(totalComment)} Comments</h4>
+          <div className="commentsort">
+            <MdOutlineSort className="sorticon"/>
+            <h4>Sort by</h4>
+          </div>
+        </div>
         {commentList.map((item, index) => {
           const owner = item.snippet.topLevelComment.snippet.authorDisplayName;
           const time = item.snippet.topLevelComment.snippet.publishedAt;
