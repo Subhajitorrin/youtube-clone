@@ -42,7 +42,7 @@ function Video({ right }) {
           allowfullscreen
         ></iframe>
 
-        <IframeDetails id={id}/>
+        <IframeDetails id={id} />
       </div>
       <div className="videoRight">
         {suggestedVideoList.map((item, index) => {

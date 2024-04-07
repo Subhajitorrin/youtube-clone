@@ -9,7 +9,6 @@ import { RiDownloadLine } from "react-icons/ri";
 import { RiMenuAddFill } from "react-icons/ri";
 import { BsThreeDots } from "react-icons/bs";
 
-
 function formatNumber(num) {
   if (num >= 1000000000) {
     return (num / 1000000000).toFixed(1) + "B";
@@ -54,28 +53,36 @@ function timeAgo(timestamp) {
 }
 
 function IframeDetails({ id }) {
-  const [videoDetails, setVideoDetails] = useState([]);
-  useEffect(() => {
-    // GetVideoDetailsSnippetStatistics(id).then((res)=>{
-    //   setVideoDetails(res.items);
-    // })
-    setVideoDetails(iframedata);
-  }, []);
+  const [videoDetails, setVideoDetails] = useState({});
+  const [title, setTitle] = useState("");
+  const [channelname, setChannelName] = useState("");
+  const [like, setLike] = useState(0);
 
   useEffect(() => {
-    console.log();
-  }, [videoDetails]);
+    // Assuming iframedata contains necessary info
+    // const data = iframedata[0];
+    // console.log(data.snippet.channelTitle);
+    GetVideoDetailsSnippetStatistics(id).then((res) => {
+      const data = res.items;
+      console.log(data[0]);
+      setVideoDetails(data[0]);
+      setTitle(data[0].snippet.title);
+      setChannelName(data[0].snippet.channelTitle);
+      setLike(formatNumber(data[0].statistics.likeCount));
+    });
+  }, []);
 
   return (
     <div className="ifreamdetailscontainer">
       <div className="titleContainer">
-        <h3>{videoDetails[0].snippet.title}</h3>
+        <h3>{title}</h3>
       </div>
       <div className="channelContainer">
         <div className="channelleft">
           <div>
-            <h5 className="channelname">{videoDetails[0].snippet.channelTitle}</h5>
-            <p className="subscount">2.32k subscribers</p>
+            <h5 className="channelname">{channelname}</h5>
+            {/* Assuming subscount is available in iframedata */}
+            <p className="subscount">{videoDetails.subscount} subscribers</p>
           </div>
           <div className="subscribe">
             <p>Subscribe</p>
@@ -85,7 +92,7 @@ function IframeDetails({ id }) {
           <div className="likeNdislike">
             <div className="like">
               <BiLike className="likeicon" />
-              <p>{formatNumber(videoDetails[0].statistics.likeCount)}</p>
+              <p>{like}</p>
             </div>
             <div className="verticalline"></div>
             <div className="dislike">
