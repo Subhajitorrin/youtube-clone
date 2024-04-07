@@ -193,6 +193,7 @@
   padding-left: 15px;
   padding-right: 10px;
   cursor: pointer;
+  overflow-x: hidden;
 }
 .viewNduration h4{
   font-size: .9rem;

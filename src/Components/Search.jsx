@@ -41,7 +41,7 @@ function Search({ searchData }) {
   useEffect(() => {
     shuffleArray(data);
     setTimeout(() => {
-      setrenderSuggestion(true)
+      setrenderSuggestion(true);
       setSuggestedVideoList(data);
     }, 1000);
     // console.log(data[0]);
