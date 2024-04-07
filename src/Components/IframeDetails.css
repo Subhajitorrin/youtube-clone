@@ -1,0 +1,161 @@
+.ifreamdetailscontainer {
+  width: 100%;
+  border: 1px solid greenyellow;
+}
+.channelContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  /* background-color: lightblue; */
+}
+.channelContainer .channelleft {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.channelContainer .channelright {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.like {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.share {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  height: 38px;
+  padding: 0 1.3rem;
+  background-color: #272727;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out all;
+}
+.share:hover {
+  background-color: #3f3f3f;
+  transition: 0.3s ease-in-out all;
+}
+.download {
+  display: flex;
+  gap: 7px;
+  height: 38px;
+  align-items: center;
+  padding: 0 1.3rem;
+  background-color: #272727;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out all;
+}
+.download:hover {
+  background-color: #3f3f3f;
+  transition: 0.3s ease-in-out all;
+}
+.save {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  padding: 0 1.3rem;
+  background-color: #272727;
+  border-radius: 20px;
+  height: 38px;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+}
+.save:hover {
+  background-color: #3f3f3f;
+  transition: 0.3s ease-in-out all;
+}
+.subscribe {
+  background-color: white;
+  color: black;
+  width: 100px;
+  height: 38px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear all;
+}
+.subscribe:hover {
+  background-color: rgb(148, 148, 148);
+  transition: 0.3s linear all;
+}
+.channelname {
+  font-size: 0.9rem;
+}
+.subscount {
+  font-size: 0.8rem;
+  color: #aaaaaa;
+  margin-top: 4px;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  background-color: #272727;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: 0.3s ease-in-out all;
+}
+.menu:hover {
+  background-color: #3f3f3f;
+  transition: 0.3s ease-in-out all;
+}
+.like {
+  /* background-color: white; */
+  width: 60%;
+  height: 100%;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s all linear;
+}
+.like:hover{
+    background-color: #3f3f3f;
+    transition: .3s all linear;
+}
+.dislike {
+  /* background-color: red; */
+  width: 40%;
+  height: 100%;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: .3s all linear;
+}
+.dislike:hover{
+    background-color: #3f3f3f;
+    transition: .3s all linear;
+}
+.likeNdislike {
+  width: 150px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  background-color: #272727;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.verticalline{
+    border: 1px solid #3F3F3F;
+    height: 70%;
+    margin: .5px;
+    border-radius: 10px;
+}

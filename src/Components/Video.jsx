@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./Video.css";
 import data from "../API/data.json";
 import VideoSectionCard from "./VideoSectionCard";
+import IframeDetails from "./IframeDetails";
 
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
@@ -20,7 +21,7 @@ function Video({ right }) {
   useEffect(() => {
     shuffleArray(data);
     setSuggestedVideoList(data);
-    console.log(data[0]);
+    // console.log(data[0]);
   }, []);
 
   useEffect(() => {
@@ -40,6 +41,8 @@ function Video({ right }) {
           referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen
         ></iframe>
+
+        <IframeDetails id={id}/>
       </div>
       <div className="videoRight">
         {suggestedVideoList.map((item, index) => {
