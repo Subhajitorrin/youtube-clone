@@ -1,0 +1,33 @@
+.commentCardContainer{
+    height: 70px;
+    width: 100%;
+    /* border: 1px solid white; */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.owerNtime{
+    display: flex;
+    gap: 10px;
+}
+.owerNtime p{
+    font-size: .9rem;
+    color: rgb(168, 168, 168);
+}
+.owerNtime h4{
+    font-size: .9rem;
+}
+.commenticons{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.comicon{
+    font-size: 1.2rem;
+}
+.commenticons h4{
+    font-size: .8rem;
+}
+.comtext{
+    font-size: .9rem;
+}

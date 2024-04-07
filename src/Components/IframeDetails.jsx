@@ -9,6 +9,8 @@ import { RiDownloadLine } from "react-icons/ri";
 import { RiMenuAddFill } from "react-icons/ri";
 import { BsThreeDots } from "react-icons/bs";
 import { GetChannelDetail } from "../API/GetChannelDetail";
+import { GetCommentsByVideoId } from "../API/GetCommentsByVideoId";
+import CommentCard from "./CommentCard";
 
 function formatNumber(num) {
   if (num >= 1000000000) {
@@ -63,6 +65,7 @@ function IframeDetails({ id }) {
   const [views, setviews] = useState(0);
   const [time, settime] = useState(0);
   const [desc, setdesc] = useState("");
+  const [commentList, setcommentList] = useState([]);
   const descX = useRef(null);
   const seeless = useRef(null);
 
@@ -78,6 +81,9 @@ function IframeDetails({ id }) {
       settime(data[0].snippet.publishedAt);
       setviews(data[0].statistics.viewCount);
       setdesc(data[0].snippet.description);
+    });
+    GetCommentsByVideoId(id, 10).then((res) => {
+      setcommentList(res.items);
     });
   }, [id]);
   useEffect(() => {
@@ -162,6 +168,16 @@ function IframeDetails({ id }) {
         </div>
       </div>
       <div className="supportDesc"></div>
+      <div className="commentsection">
+        {commentList.map((item, index) => {
+          const owner = item.snippet.topLevelComment.snippet.authorDisplayName;
+          const time = item.snippet.topLevelComment.snippet.publishedAt;
+          const text = item.snippet.topLevelComment.snippet.textDisplay;
+          return (
+            <CommentCard key={index} owner={owner} time={time} text={text} />
+          );
+        })}
+      </div>
     </div>
   );
 }
