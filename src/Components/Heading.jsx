@@ -90,6 +90,7 @@ function Heading({ toggleMenu, setToggleMenu, setsearchData }) {
             type="search"
             className="searchInput"
             placeholder="Search"
+            value=""
             onChange={(e) => setInput(e.target.value)}
           />
           <Link to="/search" className="searchContainer">
