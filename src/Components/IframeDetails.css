@@ -1,12 +1,13 @@
 .ifreamdetailscontainer {
   width: 100%;
-  border: 1px solid greenyellow;
+  /* border: 1px solid greenyellow; */
 }
 .channelContainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 50px;
+  min-height: 50px;
+  margin: 10px 0;
   /* background-color: lightblue; */
 }
 .channelContainer .channelleft {
@@ -97,7 +98,7 @@
   color: #aaaaaa;
   margin-top: 4px;
 }
-.menu {
+.menuiframe {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -107,7 +108,7 @@
   cursor: pointer;
   transition: 0.3s ease-in-out all;
 }
-.menu:hover {
+.menuiframe:hover {
   background-color: #3f3f3f;
   transition: 0.3s ease-in-out all;
 }
@@ -158,4 +159,26 @@
     height: 70%;
     margin: .5px;
     border-radius: 10px;
+}
+.likeicon{
+    font-size: 1.3rem;
+}
+
+@media (max-width: 1000px) {
+    .channelContainer{
+        flex-direction: column;
+        align-items: start;
+        gap: 15px;
+    }
+    .save{
+        display: none;
+    }
+    .download{
+        display: none;
+    }
+    
+}
+
+.menuiframe{
+  padding: 10px;
 }
