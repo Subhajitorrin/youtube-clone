@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./IframeDetails.css";
 import { GetVideoDetailsSnippetStatistics } from "../API/GetVideoDetailsSnippetStatistics";
 import iframedata from "../API/iframedata.json";
@@ -8,6 +8,7 @@ import { PiShareFat } from "react-icons/pi";
 import { RiDownloadLine } from "react-icons/ri";
 import { RiMenuAddFill } from "react-icons/ri";
 import { BsThreeDots } from "react-icons/bs";
+import { GetChannelDetail } from "../API/GetChannelDetail";
 
 function formatNumber(num) {
   if (num >= 1000000000) {
@@ -57,20 +58,53 @@ function IframeDetails({ id }) {
   const [title, setTitle] = useState("");
   const [channelname, setChannelName] = useState("");
   const [like, setLike] = useState(0);
+  const [channelId, setChannelId] = useState("");
+  const [sub, setSub] = useState();
+  const [views, setviews] = useState(0);
+  const [time, settime] = useState(0);
+  const [desc, setdesc] = useState("");
+  const descX = useRef(null);
+  const seeless = useRef(null);
 
   useEffect(() => {
-    // Assuming iframedata contains necessary info
-    // const data = iframedata[0];
-    // console.log(data.snippet.channelTitle);
     GetVideoDetailsSnippetStatistics(id).then((res) => {
       const data = res.items;
-      console.log(data[0]);
+      console.log();
+      setChannelId(data[0].snippet.channelId);
       setVideoDetails(data[0]);
       setTitle(data[0].snippet.title);
       setChannelName(data[0].snippet.channelTitle);
       setLike(formatNumber(data[0].statistics.likeCount));
+      settime(data[0].snippet.publishedAt);
+      setviews(data[0].statistics.viewCount);
+      setdesc(data[0].snippet.description);
     });
-  }, []);
+  }, [id]);
+  useEffect(() => {
+    if (channelId) {
+      GetChannelDetail(channelId).then((res) => {
+        const data = res.items[0];
+        setSub(data.statistics.subscriberCount);
+      });
+    }
+  }, [channelId]);
+
+  const renderDescription = () => {
+    return desc.split("\n").map((line, index) => {
+      return <p key={index}>{line}</p>;
+    });
+  };
+
+  function handelDesc() {
+    if (descX.current.classList.contains("descActive")) {
+      descX.current.classList.remove("descActive");
+    }
+  }
+
+  function handelSeeless(event) {
+    event.stopPropagation();
+    descX.current.classList.add("descActive");
+  }
 
   return (
     <div className="ifreamdetailscontainer">
@@ -82,7 +116,7 @@ function IframeDetails({ id }) {
           <div>
             <h5 className="channelname">{channelname}</h5>
             {/* Assuming subscount is available in iframedata */}
-            <p className="subscount">{videoDetails.subscount} subscribers</p>
+            <p className="subscount">{formatNumber(sub)} subscribers</p>
           </div>
           <div className="subscribe">
             <p>Subscribe</p>
@@ -116,6 +150,18 @@ function IframeDetails({ id }) {
           </div>
         </div>
       </div>
+      <div className="description descActive" ref={descX} onClick={handelDesc}>
+        <div className="viewNduration">
+          <h4>
+            {formatNumber(views)} views {timeAgo(time)}
+          </h4>
+          <div className="desc">{renderDescription()}</div>
+        </div>
+        <div onClick={handelSeeless}>
+          <h5>Show less</h5>
+        </div>
+      </div>
+      <div className="supportDesc"></div>
     </div>
   );
 }

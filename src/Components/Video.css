@@ -4,6 +4,7 @@
   /* border: 1px solid white; */
   padding: 2rem;
   display: flex;
+  gap: 1rem;
 }
 .videoLeft iframe {
   border-radius: 20px;
