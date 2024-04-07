@@ -235,3 +235,9 @@
   margin-top: 1rem;
   padding-left: .9rem;
 }
+
+@media (max-width: 1000px) {
+  .commentsection{
+    display: none;
+  }
+}

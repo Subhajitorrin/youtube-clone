@@ -95,3 +95,6 @@
         display: none;
     }
   }
+  .homeleft{
+    z-index: 100;
+  }
