@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import "./Video.css";
 import data from "../API/data.json";
@@ -12,7 +12,7 @@ function shuffleArray(array) {
   }
 }
 
-function Video({right}) {
+function Video({ right }) {
   const [suggestedVideoList, setSuggestedVideoList] = useState([]);
   const { id } = useParams();
   const videoContainer = useRef(null);
@@ -26,14 +26,13 @@ function Video({right}) {
   useEffect(() => {
     right.current.scrollTo(0, 0);
   }, [id]);
-  
 
   return (
     <div className="VideoContainer" ref={videoContainer}>
       <div className="videoLeft">
         <iframe
-          width="1280"
-          height="725"
+          // width="1280"
+          // height="725"
           src={`https://www.youtube.com/embed/${id}?autoplay=1&si=AKl7E_SUcdTmUOLP`}
           title="YouTube video player"
           frameborder="0"
