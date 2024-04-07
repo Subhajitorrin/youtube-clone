@@ -34,3 +34,6 @@
   flex-direction: column;
   gap: 10px;
 }
+.videoLeft iframe{
+  box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.3);
+}
